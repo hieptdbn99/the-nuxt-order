@@ -15,6 +15,7 @@
           vertical
         />
         <v-spacer />
+
         <v-dialog
           v-model="dialog"
           max-width="500px"
@@ -187,6 +188,13 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+
+  async asyncData ({ store }) {
+    await Promise.all([
+      console.log('hello'),
+      store.dispatch('order/getListProduct')
+    ])
+  },
   data: () => ({
     dialog: false,
     dialogDelete: false,
@@ -230,7 +238,7 @@ export default {
     formTitle () {
       return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
     },
-    ...mapState('order', ['listOrder'])
+    ...mapState('order', ['listOrder', 'listProduct'])
 
   },
 

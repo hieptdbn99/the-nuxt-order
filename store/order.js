@@ -1,5 +1,6 @@
 export const state = () => ({
-  listOrder: []
+  listOrder: [],
+  listProduct: []
 })
 
 export const mutations = {
@@ -14,7 +15,11 @@ export const mutations = {
   },
   deleteOrder (state, index) {
     state.listOrder.splice(index, 1)
+  },
+  getListProduct (state, products) {
+    state.listProduct = products
   }
+
 }
 
 export const actions = {
@@ -54,6 +59,13 @@ export const actions = {
         index: order.index
       }
       commit('deleteOrder', updateItem)
+    }).catch((err) => {
+      console.log(err)
+    })
+  },
+  async getListProduct ({ commit }) {
+    await this.$axios.get('api/products').then((res) => {
+      commit('getListProduct', res.data || [])
     }).catch((err) => {
       console.log(err)
     })
