@@ -1,0 +1,14 @@
+[
+  {
+    "name": "orders",
+    "path": "/orders",
+    "component": "C:\\\\xampp\\\\htdocs\\\\the-nuxt-order\\\\the-nuxt-order\\\\pages\\\\orders\\\\index.vue",
+    "chunkName": "pages/orders/index"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\xampp\\\\htdocs\\\\the-nuxt-order\\\\the-nuxt-order\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
+  }
+]
