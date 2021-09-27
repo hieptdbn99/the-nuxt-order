@@ -42,7 +42,9 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@privyid/nuxt-csrf',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/toast',
+
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

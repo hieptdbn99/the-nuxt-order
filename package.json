@@ -12,10 +12,16 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/toast": "^3.3.1",
     "@privyid/nuxt-csrf": "^1.0.0",
+    "@vuelidate/core": "^2.0.0-alpha.26",
+    "@vuelidate/validators": "^2.0.0-alpha.22",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7",
-    "vuetify": "^2.5.5"
+    "nuxt-tailvue": "^1.0.91",
+    "vue-toast-notification": "^2.0.1",
+    "vuetify": "^2.5.5",
+    "vuetify-toast": "^0.1.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.15.7",

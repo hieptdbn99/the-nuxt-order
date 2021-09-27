@@ -3,12 +3,14 @@
     "name": "orders",
     "path": "/orders",
     "component": "C:\\\\xampp\\\\htdocs\\\\the-nuxt-order\\\\the-nuxt-order\\\\pages\\\\orders\\\\index.vue",
-    "chunkName": "pages/orders/index"
+    "chunkName": "pages/orders/index",
+    "_name": "_5067365f"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\xampp\\\\htdocs\\\\the-nuxt-order\\\\the-nuxt-order\\\\pages\\\\index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_30ebc038"
   }
 ]

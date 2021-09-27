@@ -31,155 +31,179 @@
               New Item
             </v-btn>
           </template>
+            <v-card>
+              <v-form ref="form">
+              <v-card-title>
+                <span class="text-h5">{{ formTitle }}</span>
+              </v-card-title>
 
-          <v-card>
-            <v-card-title>
-              <span class="text-h5">{{ formTitle }}</span>
-            </v-card-title>
-
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col
-                      cols="12"
-                      sm="6"
-                      md="12"
-                  >
-                    <v-text-field
-                        v-model="editedItem.name_customer"
-                        label="Name Customer"
-                    />
-                  </v-col>
-                  <v-col
-                      cols="12"
-                      sm="6"
-                      md="4"
-                  >
-                    <v-text-field
-                        v-model="editedItem.phone"
-                        label="Phone"
-                    />
-                  </v-col>
-                  <v-col
-                      cols="12"
-                      sm="6"
-                      md="8"
-                  >
-                    <v-text-field
-                        v-model="editedItem.email"
-                        label="Email"
-                    />
-                  </v-col>
-                  <v-col
-                      cols="12"
-                      sm="6"
-                      md="12"
-                  >
-                    <v-text-field
-                        v-model="editedItem.address"
-                        label="Address"
-                    />
-                  </v-col>
-                  <v-col
-                      class="d-flex"
-                      cols="12"
-                      sm="4"
-                  >
-                    <v-select
-                        v-model="newProductSelect"
-                        :items="listProduct"
-                        item-text="name"
-                        item-value="id"
-                        label="Select Product"
-                        persistent-hint
-                        return-object
-                        single-line
-                    ></v-select>
-                  </v-col>
-                  <v-col
-                      cols="12"
-                      sm="6"
-                      md="4"
-                  >
-                    <v-text-field
-                        v-model="newProductAmount.total_product"
-                        label="Total Products"
-                        type="number"
-                    />
-                  </v-col>
-                  <v-col
-                      cols="12"
-                      sm="6"
-                      md="1"
-                      class="mt-3"
-                  >
-                    <v-btn
-                        icon
-                        color="pink"
-                        @click="addProductOrder"
-                    >
-
-                      <v-icon>mdi-plus</v-icon>
-                    </v-btn>
-                  </v-col>
-                  <template>
+              <v-card-text>
+                <v-container>
+                  <v-row>
                     <v-col
                         cols="12"
-                        sm="12"
-                        md="12">
-                      <v-data-table
-                          :headers="headers_product"
-                          :items="listProductOrder"
-                          hide-default-footer
-                      >
-                        <template #item.actions="{ item }">
-                          <v-icon
-                              small
-                              @click="deleteProduct(item)"
-                          >
-                            mdi-delete
-                          </v-icon>
-                        </template>
-                      </v-data-table>
-                    </v-col>
-
-                  </template>
-                  <v-col
-                      class="text-right"
-                      cols="12"
-                      sm="6"
-                      md="4"
-                  >
-                    <v-text-field
-                        v-model="editedItem.total_price"
-                        label="Total Price"
-                        disabled
+                        sm="6"
+                        md="12"
                     >
+                      <v-text-field
+                          v-model="editedItem.name_customer"
+                          label="Name Customer"
                       />
-                    </v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                      <v-text-field
+                          v-model="editedItem.phone"
+                          label="Phone"
+                      />
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="8"
+                    >
+                      <v-text-field
+                          v-model="editedItem.email"
+                          :rules="[rules.required, rules.email]"
+                          label="Email"
 
-            <v-card-actions>
-              <v-spacer/>
-              <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="close"
-              >
-                Cancel
-              </v-btn>
-              <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="save"
-              >
-                Save
-              </v-btn>
-            </v-card-actions>
-          </v-card>
+                      />
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="12"
+                    >
+                      <v-text-field
+                          v-model="editedItem.address"
+                          label="Address"
+                      />
+                    </v-col>
+                    <v-col
+                        class="d-flex"
+                        cols="12"
+                        sm="4"
+                    >
+                      <v-select
+                          v-model="newProductSelect"
+                          :items="listProduct"
+                          item-text="name"
+                          item-value="id"
+                          label="Select Product"
+                          persistent-hint
+                          return-object
+                          single-line
+                      ></v-select>
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                      <v-text-field
+                          v-model="newProductAmount.total_product"
+                          label="Total Products"
+                          type="number"
+                          hide-details
+                          single-line
+                          min="0"
+                      />
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="1"
+                        class="mt-3"
+                    >
+                      <v-btn
+                          icon
+                          color="pink"
+                          @click="addProductOrder"
+                      >
+
+                        <v-icon>mdi-plus</v-icon>
+                      </v-btn>
+                    </v-col>
+                    <template>
+                      <v-col
+                          cols="12"
+                          sm="12"
+                          md="12">
+                        <v-data-table
+                            :headers="headers_product"
+                            :items="listProductOrder"
+                            hide-default-footer
+                        >
+                          <template v-slot:item.price="{ item }">
+                          <span>{{
+                              new Intl.NumberFormat('vi-VI', {
+                                style: 'currency',
+                                currency: 'VND',
+                              }).format(item.price)
+                            }}</span>
+                          </template>
+                          <template v-slot:item.total_price_pr="{ item }">
+                          <span>{{
+                              new Intl.NumberFormat('vi-VI', {
+                                style: 'currency',
+                                currency: 'VND',
+                              }).format(item.total_price_pr)
+                            }}</span>
+                          </template>
+                          <template #item.actions="{ item }">
+                            <v-icon
+                                small
+                                @click="deleteProduct(item)"
+                            >
+                              mdi-delete
+                            </v-icon>
+                          </template>
+                        </v-data-table>
+                      </v-col>
+
+                    </template>
+                    <v-col
+                        class="text-right"
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                      <v-text-field
+                          v-model="totalPrice"
+                          label="Total Price"
+                          disabled
+                      >
+                        />
+                      </v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer/>
+                <v-btn
+                    color="blue darken-1"
+                    text
+                    @click="close"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                    color="blue darken-1"
+                    text
+                    @click="save"
+                >
+                  Save
+                </v-btn>
+              </v-card-actions>
+              </v-form>
+            </v-card>
+
+
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
@@ -199,6 +223,14 @@
           </v-card>
         </v-dialog>
       </v-toolbar>
+    </template>
+    <template v-slot:item.total_price="{ item }">
+      <span>{{
+          new Intl.NumberFormat('vi-VI', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(item.total_price)
+        }}</span>
     </template>
     <template #item.actions="{ item }">
       <v-icon
@@ -238,14 +270,23 @@ export default {
 
   },
   data: () => ({
+    rules: {
+      required: value => !!value || 'Required.',
+      counter: value => value.length <= 20 || 'Max 20 characters',
+      email: value => {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return pattern.test(value) || 'Invalid e-mail.'
+      },
+    },
+    formHasErrors: false,
     headers_product: [
       {
         text: 'Name',
         value: 'name',
       },
-      {text: 'Total Product', value: 'total_product'},
-      {text: 'Price', value: 'price'},
-      {text: 'Total', value: 'total_price_pr'},
+      {text: 'Total Product', value: 'total_product', sortable: false},
+      {text: 'Price', value: 'price', sortable: false},
+      {text: 'Total', value: 'total_price_pr', sortable: false},
       {text: 'Actions', value: 'actions', sortable: false},
     ],
 
@@ -299,7 +340,17 @@ export default {
     formTitle() {
       return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
     },
-    ...mapState('order', ['listOrder', 'listProduct'])
+    ...mapState('order', ['listOrder', 'listProduct']),
+    listProductOrderCpt() {
+      // console.log(this)
+      return [...this.$store.state.order.listProductOrderApi]
+    },
+    totalPrice() {
+      return new Intl.NumberFormat('vi-VI', {
+        style: 'currency',
+        currency: 'VND',
+      }).format(this.editedItem.total_price)
+    },
   },
 
   watch: {
@@ -322,6 +373,11 @@ export default {
     editItem(item) {
       this.editedIndex = this.listOrder.indexOf(item)
       this.editedItem = Object.assign({}, item)
+      this.$store.dispatch('order/getListProductOrder', this.editedItem.id).then(() => {
+        this.listProductOrder = this.listProductOrderCpt
+        console.log(this.listProductOrder)
+      })
+
       this.dialog = true
     },
 
@@ -345,10 +401,10 @@ export default {
       }
       console.log(this.listProductOrder)
     },
-    deleteProduct(item){
+    deleteProduct(item) {
       this.editedProductIndex = this.listProductOrder.indexOf(item)
       this.editedItem.total_price -= this.listProductOrder[this.editedProductIndex].total_price_pr
-      this.listProductOrder.splice(this.editedProductIndex , 1)
+      this.listProductOrder.splice(this.editedProductIndex, 1)
 
     },
     deleteItemConfirm() {
@@ -362,6 +418,7 @@ export default {
 
     close() {
       this.dialog = false
+      this.listProductOrder = []
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
@@ -378,24 +435,49 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
+        console.log(this.listProductOrder)
+        this.editedItem.arrayProduct = this.listProductOrder;
+        console.log(this.editedItem.arrayProduct)
         const order = {
           orderInfo: this.editedItem,
           index: this.editedIndex
         }
-        this.$store.dispatch('order/updateOrder', order)
+        if(this.$refs.form.validate()) {
+          this.$store.dispatch('order/updateOrder', order).then(() => {
+            this.$toast.success('Successfully saved', {
+              type: 'success',
+              duration: 1000
+            })
+          })
+          this.close()
+        }
+
       } else {
-        this.editedItem.arrayProduct.push(this.listProductOrder);
-        this.$store.dispatch('order/addOrder', this.editedItem)
+        if(this.$refs.form.validate()){
+          this.editedItem.arrayProduct = this.listProductOrder;
+          this.$store.dispatch('order/addOrder', this.editedItem).then(() => {
+            this.$toast.success('Successfully saved', {
+              type: 'success',
+              duration: 1000
+            })
+          })
+          this.close()
+        }
+
       }
-      this.close()
     }
   }
 }
 </script>
 
 <style scoped>
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+.inputPrice input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.inputPrice input::-webkit-outer-spin-button,
+.inputPrice input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
 </style>
