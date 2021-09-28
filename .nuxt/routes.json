@@ -2,15 +2,15 @@
   {
     "name": "orders",
     "path": "/orders",
-    "component": "C:\\\\xampp\\\\htdocs\\\\the-nuxt-order\\\\the-nuxt-order\\\\pages\\\\orders\\\\index.vue",
+    "component": "C:\\\\xampp\\\\htdocs\\\\CodeFE\\\\Nuxt js\\\\the-nuxt-order\\\\pages\\\\orders\\\\index.vue",
     "chunkName": "pages/orders/index",
-    "_name": "_5067365f"
+    "_name": "_2edd179d"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "C:\\\\xampp\\\\htdocs\\\\the-nuxt-order\\\\the-nuxt-order\\\\pages\\\\index.vue",
+    "component": "C:\\\\xampp\\\\htdocs\\\\CodeFE\\\\Nuxt js\\\\the-nuxt-order\\\\pages\\\\index.vue",
     "chunkName": "pages/index",
-    "_name": "_30ebc038"
+    "_name": "_d847c1bc"
   }
 ]
